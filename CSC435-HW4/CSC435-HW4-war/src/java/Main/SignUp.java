@@ -37,16 +37,16 @@ public class SignUp extends HttpServlet {
             if (request.getParameter("fname") != null) {
                 // New Signup
                 User signup = new User();
-                signup.fName = request.getParameter("fname");
-                signup.lName = request.getParameter("lname");
-                signup.jobTitle = request.getParameter("jobtitle");
-                signup.occupation = request.getParameter("occupation");
-                signup.eMail = request.getParameter("email");
-                signup.username = request.getParameter("username");
-                signup.password = request.getParameter("password");
+                signup.setFirstName(request.getParameter("fname"));
+                signup.setLastName(request.getParameter("lname"));
+                signup.setJobTitle(request.getParameter("jobtitle"));
+                signup.setOccupation(request.getParameter("occupation"));
+                signup.setEmail(request.getParameter("email"));
+                signup.setUsername(request.getParameter("username"));
+                signup.setPassword(request.getParameter("password"));
                 
                 Home.users.add(signup);
-                request.setAttribute("msg","New User Added, Welcome <i>" + signup.fName + "</i>!");
+                request.setAttribute("msg","New User Added, Welcome <i>" + signup.getFirstName() + "</i>!");
             }
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/signup.jsp");
                 dispatcher.forward(request, response);

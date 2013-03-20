@@ -35,15 +35,29 @@ public class ListMembers extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             
+            //Code From Shawn 
+          
             String userTable = "";
-            for (User u: Home.users) {
-                    userTable += "<tr><td><img src=\"images/user.gif\"></td><td>" + u.fName + " " + u.lName + "</td><td>" + u.jobTitle + " at " + u.occupation + "</td></tr>";
+            for (User u: Home.currentUsers.allUsers) {
+                    userTable += "<tr><td><img src=\"images/user.gif\"></td><td>" + u.getFirstName() + " " + u.getLastName() + "</td><td>" + u.getJobTitle() + " at " + u.getOccupation() + "</td></tr>";
             }
             request.setAttribute("userTable", userTable);
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/listMembers.jsp");
                 dispatcher.forward(request, response);
             
+            
+            //Code From Ben
+            
+//            String userTable = "";
+//            for (User u: Home.users) {
+//                    userTable += "<tr><td><img src=\"images/user.gif\"></td><td>" + u.getFirstName() + " " + u.getLastName() + "</td><td>" + u.getJobTitle() + " at " + u.getOccupation() + "</td></tr>";
+//            }
+//            request.setAttribute("userTable", userTable);
+//            
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/listMembers.jsp");
+//                dispatcher.forward(request, response);
+//            
         } finally {            
             out.close();
         }

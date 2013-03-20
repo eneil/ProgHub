@@ -26,6 +26,8 @@ public class Home extends HttpServlet {
     public static ArrayList<User> users = new ArrayList<User>();
     public String userId;
     
+    public static AllUsers currentUsers = new AllUsers();
+    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -41,59 +43,118 @@ public class Home extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            loggedIn = false;
             
+       //Code done by Shawn
             HttpSession session = request.getSession();
-            synchronized(session){
+            
+            if(session.getAttribute("currentUser")!= null){
+                RequestDispatcher dispatcher1 = request.getRequestDispatcher("/WEB-INF/home.jsp");
+                dispatcher1.forward(request, response);
+            }
+            
+            loggedIn = false;
+            String address1 = "/WEB-INF/login.jsp";
+
+            HttpSession session1 = request.getSession();
+            synchronized(session1){
                 
+               String userName = (String)request.getParameter("username");
                 
-                if (request.getParameter("username") != null) {
-                    boolean found = false;
-                    for (int curUser = 0; (curUser < users.size()); curUser++){
-                        if (users.get(curUser).username.equals(request.getParameter("username"))){
-                            if (users.get(curUser).password.equals(request.getParameter("password"))){
-                                loggedIn = true;
-                                session.setAttribute("userId", String.valueOf(curUser));
-                                //out.println("login via form<br>");
-                                found = true;
-                            }
+               if (userName != null) {
+
+                    User tempUser = currentUsers.getUser(userName); 
+                   
+                    
+                    if(tempUser != null){
+                        if(tempUser.getPassword().equals((String)request.getParameter("password"))){
+                            loggedIn = true;
+                            session1.setAttribute("currentUser", (String)request.getParameter("username"));                                                       
+                            address1 = "/WEB-INF/home.jsp";
+                        }else{
+                            request.setAttribute("msg", "Invalid Username and Password Combination<br>");
                         }
-                    }
-                    if (found == false) {
+                    } else{
                         request.setAttribute("msg", "Invalid Username and Password Combination<br>");
+                        loggedIn = false;                
+                        address1 = "/WEB-INF/login.jsp"; 
                     }
+
                 }
-                if (request.getParameter("logout") != null) {
-                    session.setAttribute("userId", null);
+           
+            
+                
+               if (request.getParameter("logout") != null) {
+                    session1.setAttribute("userId", null);
                     request.setAttribute("msg", "User Logged Out<br>");
                 }
-                
-                userId = (String)(session.getAttribute("userId"));
-                
-                if (userId != null) {
-                    loggedIn = true;
-                    //out.println("logged in via cookie<br>");
-                }
 
-            }
-            String address;
-            if (loggedIn == true) {
-                
-                //SHOW LOGGED IN PAGE
-                
-                request.setAttribute("user", users.get(Integer.parseInt(userId)));
-                address = "/WEB-INF/home.jsp";
-                
-            } else {
-                
-                //SHOW LOGIN PAGE
-                address = "/WEB-INF/login.jsp";
-                
-            }
             
-            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-                dispatcher.forward(request, response);
 
+            RequestDispatcher dispatcher1 = request.getRequestDispatcher(address1);
+            dispatcher1.forward(request, response);
+            
+            
+       //Code done by ben     
+//            loggedIn = false;
+//
+//            HttpSession session = request.getSession();
+//            synchronized(session){
+//                
+//                
+//                if (request.getParameter("username") != null) {
+//                    boolean found = false;
+//                    for (int curUser = 0; (curUser < users.size()); curUser++){
+//                        if (users.get(curUser).getUsername().equals(request.getParameter("username"))){
+//                            if (users.get(curUser).getPassword().equals(request.getParameter("password"))){
+//                                loggedIn = true;
+//                                session.setAttribute("userId", String.valueOf(curUser));
+//                                
+//                                //Shawn Krecker added User to a currentUser attribute to the session for profile purposes
+//                                session.setAttribute("currentUser", (String)request.getParameter("username"));
+//                                
+//                                
+//                                
+//                                //out.println("login via form<br>");
+//                                found = true;
+//                            }
+//                        }
+//                    }
+//                    if (found == false) {
+//                        request.setAttribute("msg", "Invalid Username and Password Combination<br>");
+//                    }
+//                }
+//                if (request.getParameter("logout") != null) {
+//                    session.setAttribute("userId", null);
+//                    request.setAttribute("msg", "User Logged Out<br>");
+//                }
+//                
+//                userId = (String)(session.getAttribute("userId"));
+//                
+//                if (userId != null) {
+//                    loggedIn = true;
+//                    //out.println("logged in via cookie<br>");
+//                }
+//
+//            }
+//            String address;
+//            if (loggedIn == true) {
+//                
+//                //SHOW LOGGED IN PAGE
+//                
+//                request.setAttribute("user", users.get(Integer.parseInt(userId)));
+//                address = "/WEB-INF/home.jsp";
+//                
+//            } else {
+//                
+//                //SHOW LOGIN PAGE
+//                address = "/WEB-INF/login.jsp";
+//                
+//            }
+//            
+//            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+//                dispatcher.forward(request, response);
+//        }
+        }      
         } finally {            
             out.close();
         }

@@ -23,6 +23,8 @@ public class User {
     private String education;
     private String certifications;
     
+    private MessageList messages = new MessageList();
+    
     public void User(){
     
     }
@@ -123,6 +125,9 @@ public class User {
         return certifications;
     }
     
+    public MessageList getMessageList(){
+        return this.messages;
+    }
     
     
     public String getJob(){

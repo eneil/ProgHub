@@ -1,19 +1,18 @@
 <%-- 
-    Document   : myprofile
-    Created on : Mar 19, 2013, 6:09:10 PM
+    Document   : messages
+    Created on : Mar 20, 2013, 11:37:54 AM
     Author     : shawnkrecker
 --%>
 
-<%@page import="Main.Profile"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Profile</title>
+        <title>Messages</title>
         <link rel="stylesheet" type="text/css" href="css/global.css">
         <link rel="stylesheet" type="text/css" href="css/profile.css">
-
+        <link rel="stylesheet" type="text/css" href="css/messages.css">
 
     </head>
   <body>
@@ -45,31 +44,15 @@
                 
             </div>
             <div id="content">
+                <h2 id="message_header">Messages</h2>
+                <form id="create_message_submit"action="ComposeMessage" method="post"><input type="submit" value="Create Message"></form>
+                <div id ="message_area">
+                    
+                    
+                </div>    
                
-                <img id="userimage" src="images/userunknown.jpeg">
 
-                <div id="userinfo">
-                    <h2 id="user_name"><%= user.getUsername() %>   
-                    </h2>
-                    <div id="editbuttonlink"><a href="EditProfile">Edit Profile</a></div>
-                    <ul>
-                        <li class ="userinfo_title">First Name:</li>
-                        <li class="userinfo_content"><%= user.getFirstName() %></li>
-                        <li class ="userinfo_title">Last Name:</li>
-                        <li class="userinfo_content"><%= user.getLastName() %></li>
-                        <li class ="userinfo_title">Occupation</li>
-                        <li class="userinfo_content"><%= user.getOccupation() %></li>
-                        <li class ="userinfo_title">Job Title</li>
-                        <li class ="userinfo_content"><%= user.getJobTitle() %></li>
-                        <li class ="userinfo_title">E-Mail</li>
-                        <li class ="userinfo_content"><%= user.getEmail() %></li>
-                        <li class ="userinfo_title">Skills</li>
-                        <li class ="userinfo_content"><%= user.getSkills() %></li>
-                        <li class ="userinfo_title">Hobbies</li>
-                        <li class ="userinfo_content"><%= user.getHobbies() %></li>
-                    </ul>
-
-                </div>
+            </div>
                
               
               
@@ -78,4 +61,3 @@
         </div>
     </body>
 </html>
-

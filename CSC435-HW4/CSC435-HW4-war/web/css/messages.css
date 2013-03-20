@@ -1,0 +1,24 @@
+/* 
+    Document   : messages
+    Created on : Mar 20, 2013, 1:27:43 PM
+    Author     : shawnkrecker
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#message_content{
+    width:500px;
+    height:100px; 
+}
+
+#message_header{
+    float:left;
+}
+
+#create_message_submit{
+    float:right;
+}
+
+#message_area{
+    clear:both;
+}

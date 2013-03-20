@@ -33,7 +33,7 @@ public class AllUsers {
         user1.setOccupation("Student");
         user1.setJobTitle("SUNY Oswego");
         user1.setEducation("SUNY Oswego");
-        user1.setSkills("Java, HTML, CSS, Android Development, PHP, Photoshop, Illustrator");
+        user1.setSkills("Java, JSP, HTML, CSS, Android Development, PHP, Photoshop, Illustrator");
         user1.setHobbies("Music Producation, Graphic Design, Programming, Web Design");
         user1.setUsername("skrecker");
         user1.setPassword("lala");

@@ -48,7 +48,7 @@
                 <h2 id="message_header">Messages</h2>
                 <form id="create_message_submit"action="ComposeMessage" method="post"><input type="submit" value="Create Message"></form>
                 <div id ="message_area">
-                    <%= (String)session.getAttribute("messages") %> 
+                    ${messages}
                     
                 </div>    
                

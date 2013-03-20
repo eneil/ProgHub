@@ -2,9 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Main;
+package Control;
 
-import Main.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -19,8 +18,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author shawnkrecker
  */
-@WebServlet(name = "SetProfile", urlPatterns = {"/SetProfile"})
-public class SetProfile extends HttpServlet {
+@WebServlet(name = "EditProfile", urlPatterns = {"/EditProfile"})
+public class EditProfile extends HttpServlet {
+    
+    Boolean changed;
 
     /**
      * Processes requests for both HTTP
@@ -37,29 +38,10 @@ public class SetProfile extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-                    
-               User user = Main.Profile.currentUser;
-                if(user != null){
-                   
-                    user.setUsername(request.getParameter("username"));
-                    HttpSession session = request.getSession();
-                    
-                    if(session != null){
-                        if(session.getAttribute("currentUser") != null){
-                            session.setAttribute("currentUser", user.getUsername());
-                        }
-                    }
-                    
-                    user.setFirstName(request.getParameter("firstname"));
-                    user.setLastName(request.getParameter("lastname"));
-                    user.setEmail(request.getParameter("email"));
-                    user.setOccupation(request.getParameter("occupation"));
-                    user.setJobTitle(request.getParameter("jobtitle"));
-                    user.setSkills(request.getParameter("skills"));
-                    user.setHobbies(request.getParameter("hobbies"));
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("Profile");
-                    dispatcher.forward(request,response);
-                }
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/editprofile.jsp"); 
+                dispatcher.forward(request, response);
+        
         } finally {            
             out.close();
         }

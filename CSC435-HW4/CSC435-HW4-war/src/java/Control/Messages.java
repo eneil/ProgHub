@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Main;
+package Control;
 
+import Model.Message;
+import Model.MessageList;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -18,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author shawnkrecker
  */
-@WebServlet(name = "SignOut", urlPatterns = {"/SignOut"})
-public class SignOut extends HttpServlet {
+@WebServlet(name = "Messages", urlPatterns = {"/Messages"})
+public class Messages extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -36,16 +38,32 @@ public class SignOut extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            
-            HttpSession session = request.getSession();
-            
-            if(session.getAttribute("currentUser") != null && session != null){
-                session.setAttribute("currentUser", null);
+          HttpSession session = request.getSession();
+          RequestDispatcher dispatcher;
+          
+          
+          
+          if(session.getAttribute("currentUser") != null){
+                MessageList userMessages = Profile.currentUser.getMessageList();
+                String messageToHTML = "<div id=\"message_list\"><ul>";
                 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/signout.jsp");
+                for(Message m: userMessages.getMessages()){
+                    messageToHTML += "<li id=\"message_title\">Title: "+m.getTitle()+"</li>";
+                    messageToHTML += "<li id=\"message_content\">"+m.getContent()+"</li>";
+                    
+                }
+                
+                messageToHTML += "</ul></div>";
+                session.setAttribute("messages", messageToHTML);
+                
+                dispatcher = request.getRequestDispatcher("/WEB-INF/messages.jsp");
                 dispatcher.forward(request, response);
-                
-            }
+          }else{
+                dispatcher = request.getRequestDispatcher("Home");
+                dispatcher.forward(request, response);
+          }
+         
+          
             
             
         } finally {            

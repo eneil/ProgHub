@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Main;
+package Control;
 
+import Model.User;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -18,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author shawnkrecker
  */
-@WebServlet(name = "Messages", urlPatterns = {"/Messages"})
-public class Messages extends HttpServlet {
+@WebServlet(name = "SetProfile", urlPatterns = {"/SetProfile"})
+public class SetProfile extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -36,34 +38,29 @@ public class Messages extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-          HttpSession session = request.getSession();
-          RequestDispatcher dispatcher;
-          
-          
-          
-          if(session.getAttribute("currentUser") != null){
-                MessageList userMessages = Profile.currentUser.getMessageList();
-                String messageToHTML = "<div id=\"message_list\"><ul>";
-                
-                for(Message m: userMessages.getMessages()){
-                    messageToHTML += "<li id=\"message_title\">Title: "+m.getTitle()+"</li>";
-                    messageToHTML += "<li id=\"message_content\">"+m.getContent()+"</li>";
                     
+               User user = Control.Profile.currentUser;
+                if(user != null){
+                   
+                    user.setUsername(request.getParameter("username"));
+                    HttpSession session = request.getSession();
+                    
+                    if(session != null){
+                        if(session.getAttribute("currentUser") != null){
+                            session.setAttribute("currentUser", user.getUsername());
+                        }
+                    }
+                    
+                    user.setFirstName(request.getParameter("firstname"));
+                    user.setLastName(request.getParameter("lastname"));
+                    user.setEmail(request.getParameter("email"));
+                    user.setOccupation(request.getParameter("occupation"));
+                    user.setJobTitle(request.getParameter("jobtitle"));
+                    user.setSkills(request.getParameter("skills"));
+                    user.setHobbies(request.getParameter("hobbies"));
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("Profile");
+                    dispatcher.forward(request,response);
                 }
-                
-                messageToHTML += "</ul></div>";
-                session.setAttribute("messages", messageToHTML);
-                
-                dispatcher = request.getRequestDispatcher("/WEB-INF/messages.jsp");
-                dispatcher.forward(request, response);
-          }else{
-                dispatcher = request.getRequestDispatcher("Home");
-                dispatcher.forward(request, response);
-          }
-         
-          
-            
-            
         } finally {            
             out.close();
         }

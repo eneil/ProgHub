@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Main;
+package Control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,10 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author shawnkrecker
  */
-@WebServlet(name = "EditProfile", urlPatterns = {"/EditProfile"})
-public class EditProfile extends HttpServlet {
-    
-    Boolean changed;
+@WebServlet(name = "ComposeMessage", urlPatterns = {"/ComposeMessage"})
+public class ComposeMessage extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -38,10 +36,20 @@ public class EditProfile extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/editprofile.jsp"); 
+            HttpSession session = request.getSession();
+            RequestDispatcher dispatcher;
+            
+            if(session.getAttribute("currentUser") != null){               
+                dispatcher = request.getRequestDispatcher("/WEB-INF/compose_message.jsp");
                 dispatcher.forward(request, response);
-        
+                
+                
+            }else{
+                dispatcher = request.getRequestDispatcher("Home");
+                dispatcher.forward(request, response);
+            }
+            
+            
         } finally {            
             out.close();
         }

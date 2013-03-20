@@ -1,10 +1,12 @@
-package Main;
+package Control;
 
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 
+import Control.Home;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;

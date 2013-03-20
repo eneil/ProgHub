@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Main;
+package Model;
 
-import Main.User;
+import Model.User;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +13,8 @@ import java.util.ArrayList;
  */
 public class AllUsers {
     
-    ArrayList<User> allUsers = new ArrayList<User>();
+
+    public ArrayList<User> allUsers = new ArrayList<User>();
     
     User user1;
     User user2; 

@@ -4,8 +4,9 @@
  */
 //servlets go in control package
 //ProjServ
-package Main;
+package Control;
 
+import Model.Project;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

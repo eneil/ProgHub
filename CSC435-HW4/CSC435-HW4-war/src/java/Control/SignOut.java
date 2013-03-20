@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Main;
+package Control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author shawnkrecker
  */
-@WebServlet(name = "ComposeMessage", urlPatterns = {"/ComposeMessage"})
-public class ComposeMessage extends HttpServlet {
+@WebServlet(name = "SignOut", urlPatterns = {"/SignOut"})
+public class SignOut extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -36,17 +36,15 @@ public class ComposeMessage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            HttpSession session = request.getSession();
-            RequestDispatcher dispatcher;
             
-            if(session.getAttribute("currentUser") != null){               
-                dispatcher = request.getRequestDispatcher("/WEB-INF/compose_message.jsp");
+            HttpSession session = request.getSession();
+            
+            if(session.getAttribute("currentUser") != null && session != null){
+                session.setAttribute("currentUser", null);
+                
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/signout.jsp");
                 dispatcher.forward(request, response);
                 
-                
-            }else{
-                dispatcher = request.getRequestDispatcher("Home");
-                dispatcher.forward(request, response);
             }
             
             

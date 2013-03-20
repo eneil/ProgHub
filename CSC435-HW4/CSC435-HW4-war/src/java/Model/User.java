@@ -1,4 +1,4 @@
-package Main;
+package Model;
 
 /*
  * To change this template, choose Tools | Templates

@@ -2,10 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Main;
+package Control;
 
-import Main.Home;
-import Main.User;
+import Control.Home;
+import Model.User;
+import Model.AllUsers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -20,10 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author shawnkrecker
  */
-@WebServlet(name = "Profile", urlPatterns = {"/Profile"})
-public class Profile extends HttpServlet {
-    
-    public static User currentUser;
+@WebServlet(name = "SendMessage", urlPatterns = {"/SendMessage"})
+public class SendMessage extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -40,16 +39,33 @@ public class Profile extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+          
             HttpSession session = request.getSession();
+            RequestDispatcher dispatcher;
             
             if(session.getAttribute("currentUser") != null){
-            
-                currentUser = Home.currentUsers.getUser((String)session.getAttribute("currentUser"));
-
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/myprofile.jsp");
-                dispatcher.forward(request,response);
+                String tempUserName = request.getParameter("recipient");
+                for(User u: Home.currentUsers.allUsers){
+                    if(u.getUsername().equals(tempUserName)){
+                        u.getMessageList().addMessage((String)session.getAttribute("currentUser"), 
+                                request.getParameter("title"), 
+                                request.getParameter("content"));
+                        
+                        session.setAttribute("msg", "Message Sent");
+                        dispatcher = request.getRequestDispatcher("Messages");
+                        dispatcher.forward(request, response);
+                    }
+                }
                 
+                
+            }else{
+                session.setAttribute("msg", "Message not Sent");
+                dispatcher = request.getRequestDispatcher("Messages");
+                dispatcher.forward(request, response);
             }
+            
+            
+            
             
         } finally {            
             out.close();

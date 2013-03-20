@@ -18,7 +18,7 @@
         <hr><img src="images/home.gif"><a href=Home>Home</a>  |  <img src="images/check.gif">
         <a href=SignUp>Sign Up</a>  |  <img src="images/users.gif"><a href=ListMembers>All Members</a><hr>
         
-        <h2>Welcome <i>${user.firstName}</i>!</h2>
+        <h2>Welcome <i>${currentUser}</i>!</h2>
         <br>
         This is your online home for collaborating on projects and sending messages.<br><br>
         <table>

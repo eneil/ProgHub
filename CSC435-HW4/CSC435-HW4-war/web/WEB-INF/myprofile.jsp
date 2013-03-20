@@ -4,7 +4,7 @@
     Author     : shawnkrecker
 --%>
 
-<%@page import="Main.Profile"%>
+<%@page import="Control.Profile"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +18,7 @@
     </head>
   <body>
         <div id="wrapper">
-             <% Main.User user = Main.Profile.currentUser;
+             <% Model.User user = Control.Profile.currentUser;
              
                 %>
                 

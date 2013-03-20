@@ -38,7 +38,7 @@
                             <li><a href="Profile">Profile</a></li>
                             <li><a href="ListMembers">Members</a></li>
                             <li><a href="#">Projects</a></li>
-                            <li><a href="Messages">Messages (<%= user.getMessageList().unreadCount()%>)</a></li>
+                            <li><a href="Messages">Messages <%= user.getMessageList().unreadCount()%></a></li>
                         </ul>
                     </div>
                 
@@ -49,9 +49,9 @@
                     <form action="SendMessage" method="post">
                         To:<input id="message_recipient" type="text" name="recipient"><br>
                         Title:
-                        <input id="message_title" type="text" name="title"  ><br>
+                        <input id="message_compose_title" type="text" name="title"  ><br>
                         Message:<br>
-                        <input id ="message_content" type="text" name="content" ><br>
+                        <input id ="message_compose_content" type="text" name="content" ><br>
                         <input type="submit" value="Send">
                     </form>
                     

@@ -44,14 +44,18 @@ public class MessageList {
         return messages.size();
     }
     
-    public int unreadCount(){
+    public String unreadCount(){
         int count = 0;
         for(Message m:messages){
             if(m.isUnread()){
                 count++;
             }
         }
-        return count;
+        if(count == 0){
+            return "";
+        }
+        Integer tempInt = count;
+        return "("+tempInt.toString()+")";
     }
     
     public void makeUnread(String message){

@@ -55,6 +55,10 @@ public class Message {
         this.content = content;
     }
     
+    public String getContent(){
+        return content;
+    }
+    
     public String getDate(){
         return date.toString();
     }

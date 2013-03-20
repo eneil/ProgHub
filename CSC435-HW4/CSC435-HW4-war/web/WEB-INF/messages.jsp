@@ -18,6 +18,7 @@
   <body>
         <div id="wrapper">
              <% Main.User user = Main.Profile.currentUser;
+                
              
                 %>
                 
@@ -38,7 +39,7 @@
                             <li><a href="Profile">Profile</a></li>
                             <li><a href="ListMembers">Members</a></li>
                             <li><a href="#">Projects</a></li>
-                            <li><a href="Messages">Messages (<%= user.getMessageList().unreadCount()%>)</a></li>
+                            <li><a href="Messages">Messages <%= user.getMessageList().unreadCount()%></a></li>
                         </ul>
                     </div>
                 
@@ -47,7 +48,7 @@
                 <h2 id="message_header">Messages</h2>
                 <form id="create_message_submit"action="ComposeMessage" method="post"><input type="submit" value="Create Message"></form>
                 <div id ="message_area">
-                    
+                    <%= (String)session.getAttribute("messages") %> 
                     
                 </div>    
                

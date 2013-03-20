@@ -43,13 +43,16 @@ public class Messages extends HttpServlet {
           
           if(session.getAttribute("currentUser") != null){
                 MessageList userMessages = Profile.currentUser.getMessageList();
-                String messageToHTML = "<div id=\"message_list\">";
+                String messageToHTML = "<div id=\"message_list\"><ul>";
                 
                 for(Message m: userMessages.getMessages()){
-                    messageToHTML += "";
+                    messageToHTML += "<li id=\"message_title\">Title: "+m.getTitle()+"</li>";
+                    messageToHTML += "<li id=\"message_content\">"+m.getContent()+"</li>";
+                    
                 }
                 
-                messageToHTML += "</div>";
+                messageToHTML += "</ul></div>";
+                session.setAttribute("messages", messageToHTML);
                 
                 dispatcher = request.getRequestDispatcher("/WEB-INF/messages.jsp");
                 dispatcher.forward(request, response);

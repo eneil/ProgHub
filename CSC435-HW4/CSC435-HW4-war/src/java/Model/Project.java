@@ -11,13 +11,32 @@ import java.util.ArrayList;
  * @author ethan
  */
 public class Project {
-   public String title;
-   public String dueDate;
-   public String description;
+   private String title;
+   private String dueDate;
+   private String description;
     
     public Project() {
-        title = null;
-        dueDate = null;
-        description = null;
+        
     }
+    
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    
+    public String getTitle() {
+        return title;
+    }
+    
+    public void setDate(String date) {
+        this.dueDate = date;
+    }
+    
+    public String getDate() {
+        return dueDate;
+    }
+    
+    public void setDesc(String desc) {
+        this.description = desc;
+    }
+    
 }

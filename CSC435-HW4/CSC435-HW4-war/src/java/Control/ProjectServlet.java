@@ -29,10 +29,10 @@ public class ProjectServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        proj.title = request.getParameter("title");
-        proj.dueDate = request.getParameter("due");
-        proj.description = request.getParameter("desc");
-        if (proj.title != null && proj.dueDate != null && proj.title != null) {
+        proj.setTitle(request.getParameter("title"));
+        proj.setDate(request.getParameter("due"));
+        proj.setDesc(request.getParameter("desc")); 
+        if (proj.getTitle() != null && proj.getDate() != null && proj.getTitle() != null) {
                     projList.add(proj);
 
         }

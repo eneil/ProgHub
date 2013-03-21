@@ -4,7 +4,7 @@
     Author     : ethan
 --%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="model.Project"%>
+<%@page import="Model.Project"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%

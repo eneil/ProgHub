@@ -7,13 +7,7 @@
 <%@page import="Model.Project"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-     ArrayList<Project> projList  = null;
-     
-    if(request.getAttribute("projList") != null) {
-         projList = (ArrayList<Project>)request.getAttribute("projList");
-    }
-%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,31 +16,11 @@
     </head>
     <body>
         <h1 style="text-align: center"><font color="green" size="4">Project Center</font></h1>
-        <%
-        if (projList != null && !projList.isEmpty()) {
-        %>
-        <table align="center" border="1" width="80%"> 
-            <tr>
-                <!--<td>Test Size:</td>-->
-                <td>Title:</td>
-                <td>Due Date:</td>
-                <td>Description:</td>
-            </tr>
-            <%
-            for (Project p:projList) {
-                 
-            
-            %>
-            <tr>   
-                <!--<td><%=projList.size()%></td>-->
-                <td><%=p.title %></td>
-                <td><%=p.dueDate%></td>
-                <td><%=p.description%></td>
-            </tr>
-        
-        <% } 
-            } %>
+        <table>
+            <tr><td><b>Title</b></td><td><b>Description</b></td><td><b>Due Date</b></td></tr>
+            <%= request.getAttribute("projTable") %>
         </table>
+                    
         <a href="ProjectCreate.jsp">Create Project</a>
     </body>
 </html>

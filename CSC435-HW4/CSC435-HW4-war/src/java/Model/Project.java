@@ -39,4 +39,7 @@ public class Project {
         this.description = desc;
     }
     
+    public String getDesc() {
+        return description;
+    }
 }

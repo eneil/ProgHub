@@ -26,10 +26,9 @@ public class ProjectServlet extends HttpServlet {
     ArrayList<Project> projList = new ArrayList<Project>();
     String path = "ProjectList.jsp";
     
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        proj.setTitle(request.getParameter("title"));
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
+            ServletException, IOException {
+         proj.setTitle(request.getParameter("title"));
         proj.setDate(request.getParameter("due"));
         proj.setDesc(request.getParameter("desc")); 
         if (proj.getTitle() != null && proj.getDate() != null && proj.getTitle() != null) {
@@ -45,6 +44,12 @@ public class ProjectServlet extends HttpServlet {
         dispatcher.forward(request, response);
         }
     }
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+       processRequest(request, response);
+    }
 
     /**
      * Handles the HTTP
@@ -55,7 +60,7 @@ public class ProjectServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doGet(request,response);
+        processRequest(request, response);
     }
 
     /**

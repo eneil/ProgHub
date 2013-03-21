@@ -12,6 +12,10 @@
         <servlet-name>ListMembers</servlet-name>
         <servlet-class>Control.ListMembers</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProjList</servlet-name>
+        <servlet-class>Control.ProjList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>ListMembers</servlet-name>
         <url-pattern>/ListMembers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProjList</servlet-name>
+        <url-pattern>/ProjList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

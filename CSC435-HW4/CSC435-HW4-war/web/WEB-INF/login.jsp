@@ -32,7 +32,7 @@
             <div id="content">
                 <h2><img src="images/home_32.gif"> Home Page for Programmers' Social Network</h2>
                 <hr><img src="images/home.gif"><a href=Home>Home</a>  |  <img src="images/check.gif">
-                <a href=SignUp>Sign Up</a>  |  <img src="images/users.gif"><a href=ListMembers>All Members</a><hr><br>
+                <a href=SignUp>Sign Up</a><hr><br>
                 <div><fieldset>
                     <legend><img src="images/locked.gif"> Login</legend>
                     <% if (request.getAttribute("msg") != null) out.print("<font color=red><b>" + (String)request.getAttribute("msg") + "</b></font><br>"); %>

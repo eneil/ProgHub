@@ -32,9 +32,9 @@
                     
                     <div id="navbar">
                         <ul>
-                            <li><a href="Home"><img src="images/home.gif"> Home</a></li>
+                            <li><a href="Home">Home</a></li>
                             <li><a href="Profile">Profile</a></li>
-                            <li><a href="ListMembers"><img src="images/users.gif"> Members</a></li>
+                            <li><a href="ListMembers">Members</a></li>
                             <li><a href="#">Projects</a></li>
                             <li><a href="Messages">Messages </a></li>
                         </ul>

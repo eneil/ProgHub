@@ -31,7 +31,7 @@
             <div id="content">
                 <h2><img src="images/check_32.gif"> Sign Up for Programmers' Social Network</h2>
                         <hr><img src="images/home.gif"><a href=Home>Home</a>  |  <img src="images/check.gif">
-                        <a href=SignUp>Sign Up</a>  |  <img src="images/users.gif"><a href=ListMembers>All Members</a><hr>
+                        <a href=SignUp>Sign Up</a><hr>
                         <% if (request.getAttribute("msg") != null) out.print("<font color=red><b>" + (String)request.getAttribute("msg") + "</b></font><br>"); %>
 
                         <br>
@@ -40,7 +40,7 @@
                         <form method='POST'>
                         <table>
                             <tr><td>First Name:</td><td><input type=text name=fname></tr>
-                            <tr><td>Lase Name:</td><td><input type=text name=lname></tr>
+                            <tr><td>Last Name:</td><td><input type=text name=lname></tr>
                             <tr><td>Job Title:</td><td><input type=text name=jobtitle></tr>
                             <tr><td>Current Company:</td><td><input type=text name=occupation></tr>
                             <tr><td>E-Mail Address:</td><td><input type=text name=email></tr>

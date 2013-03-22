@@ -47,7 +47,7 @@ public class SignUp extends HttpServlet {
                 signup.setUsername(request.getParameter("username"));
                 signup.setPassword(request.getParameter("password"));
                 
-                Home.users.add(signup);
+                Model.AllUsers.allUsers.add(signup);
                 request.setAttribute("msg","New User Added, Welcome <i>" + signup.getFirstName() + "</i>!");
             }
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/signup.jsp");

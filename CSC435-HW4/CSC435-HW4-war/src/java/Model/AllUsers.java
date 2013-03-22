@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class AllUsers {
     
 
-    public ArrayList<User> allUsers = new ArrayList<User>();
+    public static ArrayList<User> allUsers = new ArrayList<User>();
     
     User user1;
     User user2; 

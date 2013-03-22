@@ -9,12 +9,40 @@
 
 <html>
     <head>
-        <link href="style.css" rel="stylesheet"> 
+        <link href="css/global.css" rel="stylesheet"> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home Page for Programmers' Social Network</title>
     </head>
     <body>
-        <h1><img src="images/home_32.gif"> Home Page for Programmers' Social Network</h1>
+        <div id="wrapper">
+             <% Model.User user = Control.Profile.currentUser;
+             
+                %>
+                
+            <div id="header">
+                
+                <h1>
+                     <a href="Home">Programmer Meet Up</a>
+                </h1>
+                <div id ="userSignLog">
+                    <a href="Profile">${currentUser}</a>
+                    |
+                    <a href="SignOut">Sign Out</a>        
+                </div>
+                    
+                    <div id="navbar">
+                        <ul>
+                            <li><a href="Home"><img src="images/home.gif"> Home</a></li>
+                            <li><a href="Profile">Profile</a></li>
+                            <li><a href="ListMembers"><img src="images/users.gif"> Members</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="Messages">Messages </a></li>
+                        </ul>
+                    </div>
+                
+            </div>
+            <div id="content">
+        <h2><img src="images/home_32.gif"> Home Page for Programmers' Social Network</h2>
         <hr><img src="images/home.gif"><a href=Home>Home</a>  |  <img src="images/check.gif">
         <a href=SignUp>Sign Up</a>  |  <img src="images/users.gif"><a href=ListMembers>All Members</a><hr>
         
@@ -30,6 +58,7 @@
                     </form>
                 </td></tr>
         </table>
-
+            </div>
+        </div>
     </body>
 </html>

@@ -15,7 +15,7 @@
    <body>
         <div id="wrapper">
             
-            <% Model.User user = Control.Profile.currentUser;
+            <% Model.User user = Control.Home.currentUser;
              
                 %>
             <div id="header">

@@ -29,6 +29,8 @@ public class Home extends HttpServlet {
     public String userId;
     
     public static AllUsers currentUsers = new AllUsers();
+    public static User currentUser;
+    
     
     /**
      * Processes requests for both HTTP
@@ -50,6 +52,9 @@ public class Home extends HttpServlet {
             HttpSession session = request.getSession();
             
             if(session.getAttribute("currentUser")!= null){
+                
+                
+               
                 RequestDispatcher dispatcher1 = request.getRequestDispatcher("/WEB-INF/home.jsp");
                 dispatcher1.forward(request, response);
             }
@@ -65,12 +70,16 @@ public class Home extends HttpServlet {
                if (userName != null) {
 
                     User tempUser = currentUsers.getUser(userName); 
+                    
                    
                     
                     if(tempUser != null){
                         if(tempUser.getPassword().equals((String)request.getParameter("password"))){
                             loggedIn = true;
-                            session1.setAttribute("currentUser", (String)request.getParameter("username"));                                                       
+                            session1.setAttribute("currentUser", (String)request.getParameter("username"));
+                            
+                            
+                            currentUser = currentUsers.getUser((String)session.getAttribute("currentUser"));
                             address1 = "/WEB-INF/home.jsp";
                         }else{
                             request.setAttribute("msg", "Invalid Username and Password Combination<br>");

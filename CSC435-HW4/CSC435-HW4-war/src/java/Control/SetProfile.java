@@ -39,7 +39,7 @@ public class SetProfile extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
                     
-               User user = Control.Profile.currentUser;
+               User user = Control.Home.currentUser;
                 if(user != null){
                    
                     user.setUsername(request.getParameter("username"));

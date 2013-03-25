@@ -1,6 +1,6 @@
 <%-- 
-    Document   : messages
-    Created on : Mar 20, 2013, 11:37:54 AM
+    Document   : compose_message
+    Created on : Mar 20, 2013, 1:01:24 PM
     Author     : shawnkrecker
 --%>
 
@@ -17,8 +17,7 @@
     </head>
   <body>
         <div id="wrapper">
-             <% Model.User user = Control.Home.currentUser;
-                
+             <% Model.User user = Control.Profile.currentUser;
              
                 %>
                 
@@ -45,10 +44,16 @@
                 
             </div>
             <div id="content">
-                <h2 id="message_header">Messages</h2>
-                <form id="create_message_submit"action="ComposeMessage" method="post"><input type="submit" value="Create Message"></form>
+                <h2>Messages</h2>
                 <div id ="message_area">
-                    ${messages}
+                    <form action="SendMessage" method="post">
+                        To:<input id="message_recipient" type="text" name="recipient"><br>
+                        Title:
+                        <input id="message_compose_title" type="text" name="title"  ><br>
+                        Message:<br>
+                        <input id ="message_compose_content" type="text" name="content" ><br>
+                        <input type="submit" value="Send">
+                    </form>
                     
                 </div>    
                

@@ -44,7 +44,7 @@ public class Messages extends HttpServlet {
           
           
           if(session.getAttribute("currentUser") != null){
-                MessageList userMessages = Profile.currentUser.getMessageList();
+                MessageList userMessages = Home.currentUser.getMessageList();
                 String messageToHTML = "<div id=\"message_list\"><ul>";
                 
                 for(Message m: userMessages.getMessages()){

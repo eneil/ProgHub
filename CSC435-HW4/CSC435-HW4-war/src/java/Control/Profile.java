@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "Profile", urlPatterns = {"/Profile"})
 public class Profile extends HttpServlet {
     
-    public static User currentUser;
+    
 
     /**
      * Processes requests for both HTTP
@@ -45,8 +45,6 @@ public class Profile extends HttpServlet {
             
             if(session.getAttribute("currentUser") != null){
             
-                currentUser = Home.currentUsers.getUser((String)session.getAttribute("currentUser"));
-
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/myprofile.jsp");
                 dispatcher.forward(request,response);
                 

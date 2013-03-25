@@ -52,10 +52,8 @@
         <table>
             <tr><td><img src="images/user.gif"> <a href="Profile">Profile</a></td>
                 <td><img src="images/folder_box.gif"> <a href="Projects">Projects</a></td></tr>
-            <tr><td><img src="images/email_open.gif"> <a href="Messages">Messages</a> (0)</td><td> <%-- Will have real message count in HW4 --%>
-                    <form method="post"><input type=hidden name=logout>
-                        <img src="images/locked.gif"> <input type=submit value='Log Out'>
-                    </form>
+            <tr><td><img src="images/email_open.gif"> <a href="Messages">Messages</a> <%= user.getMessageList().unreadCount()%></td><td> <%-- Will have real message count in HW4 --%>
+                    <img src="images/locked.gif"> <a href="SignOut">Log Out</a>
                 </td></tr>
         </table>
             </div>

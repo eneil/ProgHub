@@ -24,7 +24,7 @@ import javax.servlet.RequestDispatcher;
 public class ProjectServlet extends HttpServlet {
     Project proj = new Project();
     ArrayList<Project> projList = new ArrayList<Project>();
-    String path = "ProjectList.jsp";
+    
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
@@ -40,7 +40,7 @@ public class ProjectServlet extends HttpServlet {
             //out.print
         } else {
         request.setAttribute("projList", projList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ProjectList.jsp");
         dispatcher.forward(request, response);
         }
     }

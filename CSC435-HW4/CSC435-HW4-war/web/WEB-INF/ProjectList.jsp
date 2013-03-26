@@ -39,11 +39,13 @@
                 <hr><img src="images/home.gif"><a href=Home>Home</a>  |  <img src="images/check.gif">
                 <a href=SignUp>Sign Up</a>  |  <img src="images/users.gif"><a href=ListMembers>All Members</a><hr>
                 <h3><font color="blue">Project List</font></h3>
+                <div id="project_list">
                  <table>
                     <tr><td><b>Title</b></td><td><b>Description</b></td><td><b>Due Date</b></td></tr>
                     <%= request.getAttribute("projTable") %>
                  </table>
-                    <a href="ProjectCreate.jsp">Create Project</a>     
+                    <a href="CreateProj">Create Project</a>
+                </div>
             </div>
         </div>
    </body>

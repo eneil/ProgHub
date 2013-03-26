@@ -12,8 +12,9 @@ import java.util.ArrayList;
  */
 public class Project {
    private String title;
-   private String dueDate;
+   private String groupSize;
    private String description;
+   private String lang;
     
     public Project() {
         
@@ -27,12 +28,19 @@ public class Project {
         return title;
     }
     
-    public void setDate(String date) {
-        this.dueDate = date;
+    public void setLang(String language) {
+        this.lang = language;
     }
     
-    public String getDate() {
-        return dueDate;
+    public void setSize(String size) {
+        this.groupSize = size;
+    }
+    
+    public String getSize() {
+        return groupSize;
+    }
+    public String getLang() {
+        return lang;
     }
     
     public void setDesc(String desc) {

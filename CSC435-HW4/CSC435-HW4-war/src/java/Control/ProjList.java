@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Model.Project;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 /**
  *
@@ -35,12 +36,17 @@ public class ProjList extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
          String projTable = " ";
-         for(Project p: project.projList) {
-             projTable += "<tr><td>" + p.getTitle() + "</td>" + "<td>" + p.getDesc() + "</td>" + "<td>" + p.getDate() + "</td></tr>" ;
+         ArrayList<Project> projList  = null;
+            if(request.getAttribute("projList") != null) {
+         projList = (ArrayList<Project>)request.getAttribute("projList");
+      
+         for(Project p: projList) {
+             projTable += "<tr><td>" + p.getTitle() + "</td>" + "<td>" + p.getSize() + "</td>" + "<td>" + p.getLang() + "</td>" + "<td>" + p.getDesc() + "</td></tr>" ;
          }
          request.setAttribute("projTable", projTable);
          RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ProjectList.jsp");
          dispatcher.forward(request, response);
+            }
         } finally {            
             out.close();
         }

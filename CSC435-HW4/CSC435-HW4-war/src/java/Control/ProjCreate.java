@@ -6,18 +6,18 @@ package Control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Model.Project;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
+
 /**
  *
  * @author ethan
  */
-public class ProjList extends HttpServlet {
+public class ProjCreate extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -29,24 +29,21 @@ public class ProjList extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    ProjectServlet project = new ProjectServlet();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-         String projTable = " ";
-         ArrayList<Project> projList  = null;
-            if(request.getAttribute("projList") != null) {
-         projList = (ArrayList<Project>)request.getAttribute("projList");
-      
-         for(Project p: projList) {
-             projTable += "<tr><td>" + p.getTitle() + "</td>" + "<td>" + p.getSize() + "</td>" + "<td>" + p.getLang() + "</td>" + "<td>" + p.getDesc() + "</td></tr>" ;
-         }
-         request.setAttribute("projTable", projTable);
-         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ProjectList.jsp");
-         dispatcher.forward(request, response);
-            }
+           HttpSession session = request.getSession();
+           RequestDispatcher dispatcher;
+           
+           if (session.getAttribute("currentUser") != null) {
+               dispatcher =  request.getRequestDispatcher("/WEB-INF/ProjectCreate.jsp");
+               dispatcher.forward(request, response);
+           } else {
+               dispatcher = request.getRequestDispatcher("Home");
+               dispatcher.forward(request, response);
+           }
         } finally {            
             out.close();
         }

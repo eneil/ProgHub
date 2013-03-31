@@ -6,6 +6,7 @@
 //ProjServ
 package Control;
 
+import Model.ProjList;
 import Model.Project;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,32 +23,23 @@ import javax.servlet.RequestDispatcher;
  * @author ethan
  */
 public class ProjectServlet extends HttpServlet {
-    Project proj = new Project();
-    ArrayList<Project> projList = new ArrayList<Project>();
+  
     
-    
-    
+    ProjList projects = new ProjList();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
-        PrintWriter out = response.getWriter();
-         proj.setTitle(request.getParameter("title"));
-         proj.setLang(request.getParameter("lang"));
-         proj.setSize(request.getParameter("group"));
-         proj.setDesc(request.getParameter("desc")); 
-         
-         if(proj.getTitle() != null && proj.getLang() != null && proj.getSize() != null && proj.getTitle() != null) {
-             projList.add(proj);
-         }
-       
-        if (request.getParameter("debug") != null) {
-//            for (int i = 0; i < projList.size(); i++) {
-//                out.println(projList.get(i).getTitle());
-//            }
-           out.println(proj.getTitle()); 
-        } else {
-        request.setAttribute("projList", projList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("ProjList");
-        dispatcher.forward(request, response);
+        PrintWriter out = response.getWriter();    
+        try {
+//            
+            if (request.getParameter("title") != null && request.getParameter("due") != null && request.getParameter("desc") != null) {
+                projects.addProject(request.getParameter("title"), request.getParameter("due"), request.getParameter("desc"));
+//             
+            }
+            request.setAttribute("projList", projects.getProjects());
+           RequestDispatcher dispatcher = request.getRequestDispatcher("ProjTable");
+            dispatcher.forward(request, response);
+        } finally {
+            out.close();
         }
     }
     

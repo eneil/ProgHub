@@ -11,43 +11,14 @@ import java.util.ArrayList;
  * @author ethan
  */
 public class Project {
-   private String title;
-   private String groupSize;
-   private String description;
-   private String lang;
+   public String title;
+   public String dueDate;
+   public String description;
     
-    public Project() {
-        
-    }
-    
-    public void setTitle(String title) {
+    public Project(String title, String date, String desc) {
         this.title = title;
-    }
-    
-    public String getTitle() {
-        return title;
-    }
-    
-    public void setLang(String language) {
-        this.lang = language;
-    }
-    
-    public void setSize(String size) {
-        this.groupSize = size;
-    }
-    
-    public String getSize() {
-        return groupSize;
-    }
-    public String getLang() {
-        return lang;
-    }
-    
-    public void setDesc(String desc) {
+        this.dueDate = date;
         this.description = desc;
-    }
-    
-    public String getDesc() {
-        return description;
+        
     }
 }

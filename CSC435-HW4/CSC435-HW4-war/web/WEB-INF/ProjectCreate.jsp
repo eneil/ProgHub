@@ -37,14 +37,11 @@
                 <hr><img src="images/home.gif"><a href=Home>Home</a>  |  <img src="images/check.gif">
                 <a href=SignUp>Sign Up</a>  |  <img src="images/users.gif"><a href=ListMembers>All Members</a><hr>
                 <h3 style="text-align:center"><font size="5" color="blue">Create Your Project!</font></h3>
-                <div id="project_create">
                 <form method="POST" action="ProjectServlet">Project Title: <input type="text" name="title"/><br>
-                                Language:  <input type="text" name="lang"/><br>
-                                Group Size: <input type="text" name="group"/><br>
+                                Due Date:  <input type="date" name="due"/><br>
                                 Description:<br> 
                                 <textarea rows="5" cols="50" name="desc"> </textarea><br>
                                 <input type="submit" value="save"/> </form>
-                </div>
            </div>
         </div>
     </body>

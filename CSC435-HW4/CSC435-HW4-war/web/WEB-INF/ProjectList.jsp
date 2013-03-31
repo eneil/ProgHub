@@ -44,7 +44,7 @@
                     <tr><td><b>Title</b></td><td><b>Description</b></td><td><b>Due Date</b></td></tr>
                     <%= request.getAttribute("projTable") %>
                  </table>
-                    <a href="CreateProj">Create Project</a>
+                    <a href="ProjCreate">Create Project</a>
                 </div>
             </div>
         </div>

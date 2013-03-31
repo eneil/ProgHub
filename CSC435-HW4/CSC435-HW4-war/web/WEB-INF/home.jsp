@@ -35,7 +35,7 @@
                             <li><a href="Home">Home</a></li>
                             <li><a href="Profile">Profile</a></li>
                             <li><a href="ListMembers">Members</a></li>
-                            <li><a href="ProjectServlet">Projects</a></li>
+                            <li><a href="ProjCreate">Projects</a></li>
                             <li><a href="Messages">Messages <%= user.getMessageList().unreadCount()%> </a></li>
                         </ul>
                     </div>
@@ -52,7 +52,7 @@
         <table><tr><td width="200">
         <table>
             <tr><td><img src="images/user.gif"> <a href="Profile">Profile</a></td>
-                <td><img src="images/folder_box.gif"> <a href="ProjectServlet">Projects</a></td></tr>
+                <td><img src="images/folder_box.gif"> <a href="ProjCreate">Projects</a></td></tr>
             <tr><td><img src="images/email_open.gif"> <a href="Messages">Messages</a> <%= user.getMessageList().unreadCount()%></td><td>
                     <img src="images/locked.gif"> <a href="SignOut">Log Out</a>
                 </td></tr>

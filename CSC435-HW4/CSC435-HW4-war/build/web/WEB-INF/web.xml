@@ -17,10 +17,6 @@
         <servlet-class>Control.ProjectServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CreateProj</servlet-name>
-        <servlet-class>Control.CreateProj</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ProjTable</servlet-name>
         <servlet-class>Control.ProjTable</servlet-class>
     </servlet>
@@ -43,10 +39,6 @@
     <servlet-mapping>
         <servlet-name>ProjectServlet</servlet-name>
         <url-pattern>/ProjectServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CreateProj</servlet-name>
-        <url-pattern>/CreateProj</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProjTable</servlet-name>

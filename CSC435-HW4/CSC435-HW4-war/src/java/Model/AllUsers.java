@@ -55,7 +55,7 @@ public class AllUsers {
         
         user3.setFirstName("Ben");
         user3.setLastName("Gordon");
-        user3.setEmail("bgordan1@oswego.edu");
+        user3.setEmail("bgordon1@oswego.edu");
         user3.setCurrentLocation("Oswego,NY");
         user3.setOccupation("Student");
         user3.setJobTitle("SUNY Oswego");

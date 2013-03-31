@@ -17,7 +17,7 @@
     </head>
   <body>
         <div id="wrapper">
-             <% Model.User user = Control.Profile.currentUser;
+             <% Model.User user = Control.Home.currentUser;
              
                 %>
                 
@@ -37,7 +37,7 @@
                             <li><a href="Home">Home</a></li>
                             <li><a href="Profile">Profile</a></li>
                             <li><a href="ListMembers">Members</a></li>
-                            <li><a href="#">Projects</a></li>
+                            <li><a href="ProjectServlet">Projects</a></li>
                             <li><a href="Messages">Messages <%= user.getMessageList().unreadCount()%></a></li>
                         </ul>
                     </div>

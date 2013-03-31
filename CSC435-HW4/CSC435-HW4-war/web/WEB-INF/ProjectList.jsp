@@ -35,16 +35,13 @@
                     </div>
             </div>
             <div id="content">
-                <h2><img src="images/users_32.gif"> Listing of Members</h2>
-                <hr><img src="images/home.gif"><a href=Home>Home</a>  |  <img src="images/check.gif">
-                <a href=SignUp>Sign Up</a>  |  <img src="images/users.gif"><a href=ListMembers>All Members</a><hr>
-                <h3><font color="blue">Project List</font></h3>
+                <h2><font color="blue">Project List</font></h2>
                 <div id="project_list">
-                 <table>
-                    <tr><td><b>Title</b></td><td><b>Description</b></td><td><b>Due Date</b></td></tr>
+                 <table border="1">
+                     <tr><td><b>Title</b></td><td><b>Due Date</b></td><td><b>Language</b></td><td><b>Contact Info</b></td><td><b>Group Size</b></td><td><b>Compensation</b></td><td><b>Description</b></td></tr>
                     <%= request.getAttribute("projTable") %>
                  </table>
-                    <a href="ProjCreate">Create Project</a>
+                 <a href="ProjCreate">Create Project</a>
                 </div>
             </div>
         </div>

@@ -31,8 +31,11 @@ public class ProjectServlet extends HttpServlet {
         PrintWriter out = response.getWriter();    
         try {
 //            
-            if (request.getParameter("title") != null && request.getParameter("due") != null && request.getParameter("desc") != null) {
-                projects.addProject(request.getParameter("title"), request.getParameter("due"), request.getParameter("desc"));
+            if (request.getParameter("title") != null && request.getParameter("due") != null && request.getParameter("desc") != null
+                    && request.getParameter("lang") != null && request.getParameter("comp") != null && request.getParameter("group") != null && request.getParameter("contact") != null) {
+                
+                projects.addProject(request.getParameter("title"), request.getParameter("due"), request.getParameter("desc"), request.getParameter("lang"),
+                request.getParameter("group"), request.getParameter("comp"), request.getParameter("contact"));
 //             
             }
             request.setAttribute("projList", projects.getProjects());

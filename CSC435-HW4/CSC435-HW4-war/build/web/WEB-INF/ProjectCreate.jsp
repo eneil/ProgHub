@@ -33,15 +33,17 @@
                     </div>
             </div>
             <div id="content">
-                <h2><img src="images/users_32.gif"> Listing of Members</h2>
-                <hr><img src="images/home.gif"><a href=Home>Home</a>  |  <img src="images/check.gif">
-                <a href=SignUp>Sign Up</a>  |  <img src="images/users.gif"><a href=ListMembers>All Members</a><hr>
-                <h3 style="text-align:center"><font size="5" color="blue">Create Your Project!</font></h3>
-                <form method="POST" action="ProjectServlet">Project Title: <input type="text" name="title"/><br>
-                                Due Date:  <input type="date" name="due"/><br>
+                
+                <h2 style="text-align:center"><font size="5" color="blue">Create Your Project!</font></h2>
+                <form id="ProjectCreate" method="POST" action="ProjectServlet">Project Title: <input type="text" name="title"/><br>
+                                Due Date:  <input id="DueDate" type="text" name="due"/><br>
+                                Language:  <input id="Lang" type="text" name="lang"/><br>
+                                Contact Info: <input id="Contact" type="text" name="contact"/><br>
+                                Group Size: <input id="GroupSize" type="text" name="group"/><br>
+                                Compensation: <input id="Compensation" type="text" name="comp"/><br>
                                 Description:<br> 
-                                <textarea rows="5" cols="50" name="desc"> </textarea><br>
-                                <input type="submit" value="save"/> </form>
+                                <textarea id="Description" rows="5" cols="50" name="desc"> </textarea><br>
+                                <input type="submit" value="save"/></form>
            </div>
         </div>
     </body>

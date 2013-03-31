@@ -21,8 +21,8 @@ public class ProjList {
         return projects;
     }
     
-    public void addProject(String title, String due, String desc) {
-        Project tmpProj = new Project(title, due, desc);
+    public void addProject(String title, String due, String desc, String lang, String group, String comp, String contact) {
+        Project tmpProj = new Project(title, due, desc, lang, group, comp, contact);
         projects.add(tmpProj);
     }
     

@@ -39,7 +39,7 @@ public class ProjTable extends HttpServlet {
            projList = (ArrayList<Project>)request.getAttribute("projList");
            String projTable = " ";
            for (Project p: projList) {
-                projTable += "<tr><td>" + p.title + "</td>" + "<td>" + p.dueDate + "</td>" + "<td>" + p.description + "</td></tr>" ;
+                projTable += "<tr><td>" + p.title + "</td><td>" + p.dueDate + "</td><td>" + p.language + "</td><td>" + p.contact + "</td><td>" + p.numOfPeople +"</td><td>" + p.compensation +"</td><td>" + p.description +"</td></tr>";
            }
            
            request.setAttribute("projTable", projTable);

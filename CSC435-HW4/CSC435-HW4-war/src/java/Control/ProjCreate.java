@@ -34,17 +34,17 @@ public class ProjCreate extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-           HttpSession session = request.getSession();
-           RequestDispatcher dispatcher;
-           
-           if (session.getAttribute("currentUser") != null) {
-               dispatcher =  request.getRequestDispatcher("/WEB-INF/ProjectCreate.jsp");
-               dispatcher.forward(request, response);
-           } else {
-               dispatcher = request.getRequestDispatcher("Home");
-               dispatcher.forward(request, response);
-           }
-        } finally {            
+            HttpSession session = request.getSession();
+            RequestDispatcher dispatcher;
+
+            if (session.getAttribute("currentUser") != null) {
+                dispatcher = request.getRequestDispatcher("/WEB-INF/ProjectCreate.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                dispatcher = request.getRequestDispatcher("Home");
+                dispatcher.forward(request, response);
+            }
+        } finally {
             out.close();
         }
     }

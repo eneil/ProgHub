@@ -25,25 +25,25 @@
                     <a href="Profile">${currentUser}</a>
                     <a href="SignOut">Sign Out</a>
                 </div>
-                    <div id="navbar">
-                         <ul>
-                            <li><a href="Home">Home</a></li>
-                            <li><a href="Profile">Profile</a></li>
-                            <li><a href="ListMembers">Members</a></li>
-                            <li><a href="Messages">Messages</a></li>
-                        </ul>
-                    </div>
+                <div id="navbar">
+                    <ul>
+                        <li><a href="Home">Home</a></li>
+                        <li><a href="Profile">Profile</a></li>
+                        <li><a href="ListMembers">Members</a></li>
+                        <li><a href="Messages">Messages</a></li>
+                    </ul>
+                </div>
             </div>
             <div id="content">
                 <h2><font color="blue">Project List</font></h2>
                 <div id="project_list">
-                 <table border="1">
-                     <tr><td><b>Title</b></td><td><b>Due Date</b></td><td><b>Language</b></td><td><b>Contact Info</b></td><td><b>Group Size</b></td><td><b>Compensation</b></td><td><b>Description</b></td></tr>
-                    <%= request.getAttribute("projTable") %>
-                 </table>
-                 <a href="ProjCreate">Create Project</a>
+                    <table border="1">
+                        <tr><td><b>Title</b></td><td><b>Due Date</b></td><td><b>Language</b></td><td><b>Contact Info</b></td><td><b>Group Size</b></td><td><b>Compensation</b></td><td><b>Description</b></td></tr>
+                        <%= request.getAttribute("projTable")%>
+                    </table>
+                    <a href="ProjCreate">Create Project</a>
                 </div>
             </div>
         </div>
-   </body>
+    </body>
 </html>

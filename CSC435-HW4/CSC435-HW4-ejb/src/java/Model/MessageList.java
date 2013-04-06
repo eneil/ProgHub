@@ -4,6 +4,7 @@
  */
 package Model;
 
+import Model.Message;
 import java.util.ArrayList;
 
 /**

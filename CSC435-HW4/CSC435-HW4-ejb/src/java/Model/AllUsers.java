@@ -5,6 +5,7 @@
 package Model;
 
 import Model.User;
+import Model.User;
 import java.util.ArrayList;
 
 /**

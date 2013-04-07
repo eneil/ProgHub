@@ -6,9 +6,11 @@
 //ProjServ
 package Control;
 
+import ControlEJB.ProjectBeanLocal;
 import Model.ProjList;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ProjectServlet extends HttpServlet {
     
-    ProjList projects = new ProjList();
+    @EJB
+    ProjectBeanLocal projectList;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
@@ -30,14 +33,13 @@ public class ProjectServlet extends HttpServlet {
 //            
             if (request.getParameter("title") != null && request.getParameter("due") != null && request.getParameter("desc") != null
                     && request.getParameter("lang") != null && request.getParameter("comp") != null && request.getParameter("group") != null && request.getParameter("contact") != null) {
-                
-                projects.addProject(request.getParameter("title"), request.getParameter("due"), request.getParameter("desc"), request.getParameter("lang"),
-                        request.getParameter("group"), request.getParameter("comp"), request.getParameter("contact"));
+                    
+                request.setAttribute("projList", projectList.addProject(request.getParameter("title"), request.getParameter("due"), request.getParameter("desc"), request.getParameter("lang"), request.getParameter("group"), request.getParameter("comp"), request.getParameter("contact")));
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ProjectList.jsp");
+                dispatcher.forward(request, response);
 //             
             }
-            request.setAttribute("projList", projects.getProjects());
-            RequestDispatcher dispatcher = request.getRequestDispatcher("ProjTable");
-            dispatcher.forward(request, response);
+            
         } finally {
             out.close();
         }

@@ -5,11 +5,12 @@ package Control;
  * and open the template in the editor.
  */
 
+import ControlEJB.LoginUserLocal;
 import Model.AllUsers;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,12 +26,14 @@ import javax.servlet.http.HttpSession;
 public class Home extends HttpServlet {
 
     boolean loggedIn = false;
-    public static ArrayList<User> users = new ArrayList<User>();
+    //public static ArrayList<User> users = new ArrayList<User>();
     public String userId;
     
     public static AllUsers currentUsers = new AllUsers();
     public static User currentUser;
     
+    @EJB
+    LoginUserLocal loginInterface;
     
     /**
      * Processes requests for both HTTP

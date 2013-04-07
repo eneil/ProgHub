@@ -6,10 +6,12 @@ package Control;
  */
 
 import Control.Home;
+import ControlEJB.ListUsersLocal;
 import Model.AllUsers;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,35 +34,33 @@ public class ListMembers extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    @EJB
+    ListUsersLocal userList;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             
-            //Code From Shawn 
+            //Old Table Listing
           
-            String userTable = "";
-            for (User u: Home.currentUsers.allUsers) {
-                    userTable += "<tr><td><img src=\"images/user.gif\"></td><td>" + u.getFirstName() + " " + u.getLastName() + "</td><td>" + u.getJobTitle() + " at " + u.getOccupation() + "</td></tr>";
-            }
-            request.setAttribute("userTable", userTable);
+//            String userTable = "";
+//            for (User u: Home.currentUsers.allUsers) {
+//                    userTable += "<tr><td><img src=\"images/user.gif\"></td><td>" + u.getFirstName() + " " + u.getLastName() + "</td><td>" + u.getJobTitle() + " at " + u.getOccupation() + "</td></tr>";
+//            }
+            
+            
+
+            String userTable = userList.listUsers();
+                    
+            //request.setAttribute("userTable", userTable);
+            request.setAttribute("userTable", "test");
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/listMembers.jsp");
                 dispatcher.forward(request, response);
             
-            
-            //Code From Ben
-            
-//            String userTable = "";
-//            for (User u: Home.users) {
-//                    userTable += "<tr><td><img src=\"images/user.gif\"></td><td>" + u.getFirstName() + " " + u.getLastName() + "</td><td>" + u.getJobTitle() + " at " + u.getOccupation() + "</td></tr>";
-//            }
-//            request.setAttribute("userTable", userTable);
-//            
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/listMembers.jsp");
-//                dispatcher.forward(request, response);
-//            
         } finally {            
             out.close();
         }

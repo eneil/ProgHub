@@ -5,10 +5,11 @@ package Control;
  * and open the template in the editor.
  */
 
-import Control.Home;
+import ControlEJB.AddUserLocal;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class SignUp extends HttpServlet {
 
+    @EJB
+    AddUserLocal userCreator;
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -47,7 +50,7 @@ public class SignUp extends HttpServlet {
                 signup.setUsername(request.getParameter("username"));
                 signup.setPassword(request.getParameter("password"));
                 
-                Model.AllUsers.allUsers.add(signup);
+                userCreator.addUser(signup);
                 request.setAttribute("msg","New User Added, Welcome <i>" + signup.getFirstName() + "</i>!");
             }
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/signup.jsp");

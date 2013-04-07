@@ -51,13 +51,10 @@ public class Home extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             
-       //Code done by Shawn
-            HttpSession session = request.getSession();
-            
-            if(session.getAttribute("currentUser")!= null){
+
+            HttpSession session1 = request.getSession();
+            if(session1.getAttribute("currentUser")!= null){
                 
-                
-               
                 RequestDispatcher dispatcher1 = request.getRequestDispatcher("/WEB-INF/home.jsp");
                 dispatcher1.forward(request, response);
             }
@@ -65,42 +62,54 @@ public class Home extends HttpServlet {
             loggedIn = false;
             String address1 = "/WEB-INF/login.jsp";
 
-            HttpSession session1 = request.getSession();
             synchronized(session1){
                 
                String userName = (String)request.getParameter("username");
+               String password = (String)request.getParameter("password");
                 
                if (userName != null) {
-
-                    User tempUser = currentUsers.getUser(userName); 
-                    
                    
-                    
-                    if(tempUser != null){
-                        if(tempUser.getPassword().equals((String)request.getParameter("password"))){
-                            loggedIn = true;
-                            session1.setAttribute("currentUser", (String)request.getParameter("username"));
-                            
-                            
-                            currentUser = currentUsers.getUser((String)session.getAttribute("currentUser"));
-                            address1 = "/WEB-INF/home.jsp";
-                        }else{
-                            request.setAttribute("msg", "Invalid Username and Password Combination<br>");
-                        }
-                    } else{
+                   
+
+                    User tempUser = loginInterface.loginAttempt(userName, password);
+                    if(tempUser == null){
+                        
                         request.setAttribute("msg", "Invalid Username and Password Combination<br>");
                         loggedIn = false;                
                         address1 = "/WEB-INF/login.jsp"; 
+                    } else {
+                        loggedIn = true;
+                        session1.setAttribute("currentUser", (String)request.getParameter("username"));    
+                        currentUser = tempUser;
+                        address1 = "/WEB-INF/home.jsp";
                     }
+                   
+                    
+//                    if(tempUser != null){
+//                        if(tempUser.getPassword().equals((String)request.getParameter("password"))){
+//                            loggedIn = true;
+//                            session1.setAttribute("currentUser", (String)request.getParameter("username"));
+//                            
+//                            
+//                            currentUser = currentUsers.getUser((String)session.getAttribute("currentUser"));
+//                            address1 = "/WEB-INF/home.jsp";
+//                        }else{
+//                            request.setAttribute("msg", "Invalid Username and Password Combination<br>");
+//                        }
+//                    } else{
+//                        request.setAttribute("msg", "Invalid Username and Password Combination<br>");
+//                        loggedIn = false;                
+//                        address1 = "/WEB-INF/login.jsp"; 
+//                    }
 
                 }
            
             
                 
-               if (request.getParameter("logout") != null) {
-                    session1.setAttribute("userId", null);
-                    request.setAttribute("msg", "User Logged Out<br>");
-                }
+//               if (request.getParameter("logout") != null) {
+//                    session1.setAttribute("userId", null);
+//                    request.setAttribute("msg", "User Logged Out<br>");
+//                }
 
             
 

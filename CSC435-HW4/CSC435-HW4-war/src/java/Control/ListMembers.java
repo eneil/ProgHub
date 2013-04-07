@@ -5,10 +5,10 @@ package Control;
  * and open the template in the editor.
  */
 
-import Control.Home;
+//import Control.Home;
 import ControlEJB.ListUsersLocal;
-import Model.AllUsers;
-import Model.User;
+//import Model.AllUsers;
+//import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;

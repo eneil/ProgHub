@@ -15,18 +15,22 @@ import javax.ejb.Stateless;
 public class LoginUser implements LoginUserLocal {
 
     @Override
-    public User loginAttempt(String userName, String passWord) {
+    public User loginAttempt(String userName, String password) {
         
-        
-        
-        
-        
-        
-        return null;
-    }
+        User correctUser = null;
 
-    
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+        for(User temp: Model.AllUsers.allUsers){            
+                if(temp.getUsername().equals(userName)){
+                    if (temp.getPassword().equals(password)){
+                            correctUser = temp;
+                        }
+                }
+        }
+        if (correctUser == null) {
+            return null;
+        } else {
+            return correctUser;
+        }
+    }
 
 }

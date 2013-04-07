@@ -12,8 +12,8 @@ import javax.ejb.Local;
  * @author Ben Gordon
  */
 @Local
-public interface LoginUserLocal {
+public interface AddUserLocal {
 
-    User loginAttempt(String userName, String password);
+    void addUser(User newUser);
     
 }

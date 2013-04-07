@@ -55,8 +55,7 @@ public class ListMembers extends HttpServlet {
 
             String userTable = userList.listUsers();
                     
-            //request.setAttribute("userTable", userTable);
-            request.setAttribute("userTable", "test");
+            request.setAttribute("userTable", userTable);
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/listMembers.jsp");
                 dispatcher.forward(request, response);

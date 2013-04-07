@@ -18,9 +18,9 @@ public class ListUsers implements ListUsersLocal {
     public String listUsers() {
 
         String userTable = "";
-//            for (User u: Control.Home.currentUsers.allUsers) {
-//                    userTable += "<tr><td><img src=\"images/user.gif\"></td><td>" + u.getFirstName() + " " + u.getLastName() + "</td><td>" + u.getJobTitle() + " at " + u.getOccupation() + "</td></tr>";
-//            }
+            for (User u: Model.AllUsers.allUsers) {
+                    userTable += "<tr><td><img src=\"images/user.gif\"></td><td>" + u.getFirstName() + " " + u.getLastName() + "</td><td>" + u.getJobTitle() + " at " + u.getOccupation() + "</td></tr>";
+            }
         return userTable;
     }
 

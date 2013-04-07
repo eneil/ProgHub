@@ -27,7 +27,6 @@
                         <li><a href="Home">Home</a></li>
                         <li><a href="Profile">Profile</a></li>
                         <li><a href="ListMembers">Members</a></li>
-                        <li><a href="ProjectServlet">Projects</a></li>
                         <li><a href="Messages">Messages</a></li>
                     </ul>
                 </div>

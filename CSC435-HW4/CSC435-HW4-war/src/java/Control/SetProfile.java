@@ -43,10 +43,11 @@ public class SetProfile extends HttpServlet {
                     if(session != null){
                         if(session.getAttribute("currentUser") != null){
                             session.setAttribute("currentUser", user.getUsername());
+                            changeProfileInterface.setProfile(user, request);
                         }
                     }                   
                
-                    changeProfileInterface.setProfile(user, request);
+                   
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Profile");
                     dispatcher.forward(request,response);
                 }

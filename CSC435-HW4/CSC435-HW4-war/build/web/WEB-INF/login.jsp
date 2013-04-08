@@ -11,7 +11,7 @@
     <head>
         <link href="css/global.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home Page for Programmers' Social Network</title>
+        <title>Home Page for Programmer Meet Up</title>
     </head>
     <body>
         <div id="wrapper">
@@ -30,9 +30,11 @@
                 
             </div>
             <div id="content">
-                <h2><img src="images/home_32.gif"> Home Page for Programmers' Social Network</h2>
+                <h2><img src="images/home_32.gif"> Home Page for Programmer Meet Up</h2>
                 <hr><img src="images/home.gif"><a href=Home>Home</a>  |  <img src="images/check.gif">
                 <a href=SignUp>Sign Up</a><hr><br>
+                
+                <table><tr><td>
                 <div><fieldset>
                     <legend><img src="images/locked.gif"> Login</legend>
                     <% if (request.getAttribute("msg") != null) out.print("<font color=red><b>" + (String)request.getAttribute("msg") + "</b></font><br>"); %>
@@ -46,6 +48,11 @@
                 </fieldset></div>
                 <br>
                 If you don't have an account <a href=SignUp>sign up</a> for one!
+                
+                        </td><td valign="top">
+                            <br>
+                            Welcome to the Programmer Meet Up! Here you can make a profile, create programming projects, and meet up with other programmers to collaborate on projects.                            
+                        </td></tr></table>
             </div>
         </div>
 

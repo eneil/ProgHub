@@ -4,7 +4,7 @@
  */
 package Control;
 
-import Model.User;
+import ControlEJB.ChangeProfileLocal;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.ejb.EJB;
 
 /**
  *
@@ -23,23 +24,17 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "SetProfile", urlPatterns = {"/SetProfile"})
 public class SetProfile extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+  @EJB
+  ChangeProfileLocal changeProfileInterface;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-                    
+           
                User user = Control.Home.currentUser;
+
                 if(user != null){
                    
                     user.setUsername(request.getParameter("username"));
@@ -49,15 +44,9 @@ public class SetProfile extends HttpServlet {
                         if(session.getAttribute("currentUser") != null){
                             session.setAttribute("currentUser", user.getUsername());
                         }
-                    }
-                    
-                    user.setFirstName(request.getParameter("firstname"));
-                    user.setLastName(request.getParameter("lastname"));
-                    user.setEmail(request.getParameter("email"));
-                    user.setOccupation(request.getParameter("occupation"));
-                    user.setJobTitle(request.getParameter("jobtitle"));
-                    user.setSkills(request.getParameter("skills"));
-                    user.setHobbies(request.getParameter("hobbies"));
+                    }                   
+               
+                    changeProfileInterface.setProfile(user, request);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Profile");
                     dispatcher.forward(request,response);
                 }

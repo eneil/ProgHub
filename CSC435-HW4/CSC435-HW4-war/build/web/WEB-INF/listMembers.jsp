@@ -14,7 +14,9 @@
     </head>
     <body>
         <div id="wrapper">
+             <% Model.User user = Control.Home.currentUser;
              
+                %>
                 
             <div id="header">
                 
@@ -32,16 +34,16 @@
                             <li><a href="Home">Home</a></li>
                             <li><a href="Profile">Profile</a></li>
                             <li><a href="ListMembers">Members</a></li>
-                            <li><a href="#">Projects</a></li>
-                            <li><a href="Messages">Messages</a></li>
+                            <li><a href="ProjectServlet">Projects</a></li>
+                            <li><a href="Messages">Messages <%= user.getMessageList().unreadCount()%></a></li>
                         </ul>
                     </div>
                 
             </div>
             <div id="content">
                 <h2><img src="images/users_32.gif"> Listing of Members</h2>
-                <hr><img src="images/home.gif"><a href=Home>Home</a>  |  <img src="images/check.gif">
-                <a href=SignUp>Sign Up</a>  |  <img src="images/users.gif"><a href=ListMembers>All Members</a><hr>
+                <hr><%--<img src="images/home.gif"><a href=Home>Home</a>  |  <img src="images/check.gif">
+                <a href=SignUp>Sign Up</a>  |  <img src="images/users.gif"><a href=ListMembers>All Members</a><hr><--%>
                 <h2>A full list of our users:</h2>
                 <br>
                 

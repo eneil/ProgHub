@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 @Stateless
 public class ChangeProfile implements ChangeProfileLocal {
 
+    @Override
     public void setProfile(User user, HttpServletRequest request){
         
         user.setUsername(request.getParameter("username"));

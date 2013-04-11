@@ -4,11 +4,11 @@
  */
 package Control;
 
-import Control.Home;
+import ControlEJB.SendMessageBeanLocal;
 import Model.User;
-import Model.AllUsers;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,16 +24,10 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "SendMessage", urlPatterns = {"/SendMessage"})
 public class SendMessage extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    @EJB
+    SendMessageBeanLocal sendMessageBeanLocal;
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -43,22 +37,15 @@ public class SendMessage extends HttpServlet {
             HttpSession session = request.getSession();
             RequestDispatcher dispatcher;
             
-            if(session.getAttribute("currentUser") != null){
-                String tempUserName = request.getParameter("recipient");
-                for(User u: Home.currentUsers.allUsers){
-                    if(u.getUsername().equals(tempUserName)){
-                        u.getMessageList().addMessage((String)session.getAttribute("currentUser"), 
-                                request.getParameter("title"), 
-                                request.getParameter("content"));
-                        
-                        session.setAttribute("msg", "Message Sent");
-                        dispatcher = request.getRequestDispatcher("Messages");
-                        dispatcher.forward(request, response);
-                    }
-                }
+            if(session.getAttribute("currentUser") != null){  
                 
                 
-            }else{
+                sendMessageBeanLocal.deliverMessage(Home.currentUsers.allUsers, request);
+            
+                   dispatcher = request.getRequestDispatcher("Messages");
+                   dispatcher.forward(request, response);
+                    
+             }else{
                 session.setAttribute("msg", "Message not Sent");
                 dispatcher = request.getRequestDispatcher("Messages");
                 dispatcher.forward(request, response);

@@ -5,7 +5,8 @@
 package ControlEJB;
 
 import Model.User;
-import javax.ejb.Stateless;
+import javax.ejb.Local;
+import javax.ejb.Stateful;
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -13,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author shawnkrecker
  */
-@Stateless
+
+@Stateful
+@Local(ChangeProfileLocal.class)
 public class ChangeProfile implements ChangeProfileLocal {
 
     @Override

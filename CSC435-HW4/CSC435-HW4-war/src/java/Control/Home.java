@@ -73,7 +73,7 @@ public class Home extends HttpServlet {
 
                     User tempUser = loginInterface.loginAttempt(userName, password);
                     if(tempUser == null){
-                        
+                         
                         request.setAttribute("msg", "Invalid Username and Password Combination<br>");
                         loggedIn = false;                
                         address1 = "/WEB-INF/login.jsp"; 

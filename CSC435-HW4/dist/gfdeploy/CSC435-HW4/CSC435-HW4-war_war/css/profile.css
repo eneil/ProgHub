@@ -1,0 +1,58 @@
+/* 
+    Document   : profile
+    Created on : Mar 8, 2013, 7:06:03 PM
+    Author     : shawnkrecker
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#content{
+    
+}
+#content a{
+    text-decoration: none;
+    color:black;
+}
+
+#content a:hover{
+    color:gray;
+}
+
+#editbuttonlink{
+    float:right;
+    
+}
+
+#user_name{
+    
+}
+
+#userimage{
+   float:left;
+   width: 200px;
+   height:200px;
+   
+}
+
+#userinfo{
+    float:left;
+}
+
+.userinfo_title{
+   background-color: #385A7F;
+   color:white;
+   width:100px;
+   heigh:50px;
+   padding:5px;
+   font-size: 18px;
+}
+
+.userinfo_content{
+ font-size: 16px;
+ padding-left:10px;
+    
+}
+
+#userinfo ul{
+    list-style-type: none;
+}

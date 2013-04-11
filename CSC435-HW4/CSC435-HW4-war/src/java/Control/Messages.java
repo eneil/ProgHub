@@ -38,11 +38,10 @@ public class Messages extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+          
           HttpSession session = request.getSession();
           RequestDispatcher dispatcher;
-          
-          
-          
+
           if(session.getAttribute("currentUser") != null){
                 MessageList userMessages = Home.currentUser.getMessageList();
                 String messageToHTML = "<div id=\"message_list\"><ul>";

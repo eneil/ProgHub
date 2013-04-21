@@ -8,6 +8,7 @@ package Model;
 
 import java.util.ArrayList;
 
+
 /**
  *
  * @author ethan
@@ -24,7 +25,14 @@ public class ProjList {
     }
     
     public void addProject(String title, String due, String desc, String lang, String group, String comp, String contact) {
-        Project tmpProj = new Project(title, due, desc, lang, group, comp, contact);
+        Project tmpProj = new Project();
+        tmpProj.setTitle(title);
+        tmpProj.setDue(due);
+        tmpProj.setDescription(desc);
+        tmpProj.setLang(lang);
+        tmpProj.setContributors(group);
+        tmpProj.setCompensation(comp);
+        tmpProj.setContact(contact);
         projects.add(tmpProj);
     }
     

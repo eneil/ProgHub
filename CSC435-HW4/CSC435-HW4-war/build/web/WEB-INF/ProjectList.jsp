@@ -8,14 +8,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<% ArrayList<Project> projList = null;
+<%          ArrayList<Project> projList = null;
             projList = (ArrayList<Project>) request.getAttribute("projList");
             String projTable = " ";
             for (Project p : projList) {
-                projTable += "<tr><td>" + p.title + "</td><td>" + p.dueDate + "</td><td>" + p.language + "</td><td>" + p.contact + "</td><td>" + p.numOfPeople + "</td><td>" + p.compensation + "</td><td>" + p.description + "</td></tr>";
+                projTable += "<tr><td>" + p.getTitle() + "</td><td>" + p.getDue() + "</td><td>" + p.getLang() + "</td><td>" + p.getContact() + "</td><td>" + p.getContributors() + "</td><td>" + p.getCompensation() + "</td><td>" + p.getDescription() + "</td></tr>";
             } 
              request.setAttribute("projTable", projTable);
-            %>
+%>
 <!DOCTYPE html>
 <html>
     <head>

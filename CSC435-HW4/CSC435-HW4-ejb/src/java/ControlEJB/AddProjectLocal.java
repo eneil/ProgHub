@@ -5,19 +5,13 @@
 package ControlEJB;
 
 import Model.Project;
-import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author Eneil
+ * @author Ethan
  */
 @Local
-public interface ProjectBeanLocal {
-    
-   
-
-    public List<Project> listProject();
-
-   
+public interface AddProjectLocal {
+    void addProject(Project p);
 }

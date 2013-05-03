@@ -6,10 +6,12 @@
 //ProjServ
 package Control;
 
+import ControlEJB.AddProjectLocal;
 import ControlEJB.ProjectBeanLocal;
-import Model.ProjList;
+import Model.Project;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,7 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 public class ProjectServlet extends HttpServlet {
     
     @EJB
-    ProjectBeanLocal projectList;
+    AddProjectLocal projCreator;
+    ProjectBeanLocal projBean;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
@@ -33,8 +36,17 @@ public class ProjectServlet extends HttpServlet {
 //            
             if (request.getParameter("title") != null && request.getParameter("due") != null && request.getParameter("desc") != null
                     && request.getParameter("lang") != null && request.getParameter("comp") != null && request.getParameter("group") != null && request.getParameter("contact") != null) {
-                    
-                request.setAttribute("projList", projectList.addProject(request.getParameter("title"), request.getParameter("due"), request.getParameter("desc"), request.getParameter("lang"), request.getParameter("group"), request.getParameter("comp"), request.getParameter("contact")));
+                  Project p = new Project(); 
+                  p.setTitle(request.getParameter("title"));
+                  p.setDue(request.getParameter("due"));
+                  p.setDescription(request.getParameter("desc"));
+                  p.setLang(request.getParameter("lang"));
+                  p.setCompensation(request.getParameter("comp"));
+                  p.setContributors(request.getParameter("group"));
+                  p.setContact(request.getParameter("contact"));
+                  projCreator.addProject(p);
+                  List<Project> projList = projBean.listProject();
+                  request.setAttribute("projList", projList);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ProjectList.jsp");
                 dispatcher.forward(request, response);
 //             

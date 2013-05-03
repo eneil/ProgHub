@@ -26,7 +26,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Project.findAll", query = "SELECT p FROM Project p"),
     @NamedQuery(name = "Project.findByTitle", query = "SELECT p FROM Project p WHERE p.title = :title"),
-    @NamedQuery(name = "Project.findById", query = "SELECT p FROM Project p WHERE p.id = :id"),
     @NamedQuery(name = "Project.findByDescription", query = "SELECT p FROM Project p WHERE p.description = :description"),
     @NamedQuery(name = "Project.findByDue", query = "SELECT p FROM Project p WHERE p.due = :due"),
     @NamedQuery(name = "Project.findByContributors", query = "SELECT p FROM Project p WHERE p.contributors = :contributors"),
@@ -37,12 +36,8 @@ public class Project implements Serializable {
     private static final long serialVersionUID = 1L;
     @Size(max = 100)
     @Column(name = "title")
-    private String title;
     @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id")
-    private Integer id;
+    private String title;
     @Size(max = 1000)
     @Column(name = "description")
     private String description;
@@ -66,9 +61,7 @@ public class Project implements Serializable {
         
     }
 
-    public Project(Integer id) {
-        this.id = id;
-    }
+  
 
     public String getTitle() {
         return title;
@@ -78,13 +71,8 @@ public class Project implements Serializable {
         this.title = title;
     }
 
-    public Integer getId() {
-        return id;
-    }
+ 
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getDescription() {
         return description;
@@ -134,12 +122,7 @@ public class Project implements Serializable {
         this.lang = lang;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
+
 
     @Override
     public boolean equals(Object object) {
@@ -148,7 +131,7 @@ public class Project implements Serializable {
             return false;
         }
         Project other = (Project) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.title == null && other.title != null) || (this.title != null && !this.title.equals(other.title))) {
             return false;
         }
         return true;
@@ -156,7 +139,7 @@ public class Project implements Serializable {
 
     @Override
     public String toString() {
-        return "Model.Project[ id=" + id + " ]";
+        return "Model.Project[ title=" + title + " ]";
     }
     
 }

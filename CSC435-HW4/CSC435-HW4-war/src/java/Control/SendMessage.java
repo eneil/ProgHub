@@ -40,7 +40,7 @@ public class SendMessage extends HttpServlet {
             if(session.getAttribute("currentUser") != null){  
                 
                 
-                sendMessageBeanLocal.deliverMessage(Home.currentUsers.allUsers, request);
+                sendMessageBeanLocal.deliverMessage( request);
             
                    dispatcher = request.getRequestDispatcher("Messages");
                    dispatcher.forward(request, response);

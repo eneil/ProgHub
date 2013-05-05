@@ -4,13 +4,10 @@
  */
 package Control;
 
-import ControlEJB.GetMessagesBeanLocal;
-import Model.MessagesEntity;
+import Model.Message;
+import Model.MessageList;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.rmi.NoSuchObjectException;
-import java.util.List;
-import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,9 +23,16 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "Messages", urlPatterns = {"/Messages"})
 public class Messages extends HttpServlet {
 
-    @EJB
-    GetMessagesBeanLocal messages;
-
+    /**
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -39,25 +43,20 @@ public class Messages extends HttpServlet {
           RequestDispatcher dispatcher;
 
           if(session.getAttribute("currentUser") != null){
-              List<MessagesEntity> list = null;
-              
-          
-               list = messages.getMessageList(Home.currentUser.getUsername());
-
-                 
-            String messageToHTML = "<div id=\"message_list\"><ul>";
-            
-            for(int i = 0; i < list.size(); i++){
-                MessagesEntity tempList = list.get(i);
-                messageToHTML += "<li id=\"message_title\">Title: "+tempList.getTitle()+"</li>";
-                messageToHTML += "<li id=\"message_content\">"+tempList.getContent()+"</li>";
-            }
-
-            messageToHTML += "</ul></div>";
-            session.setAttribute("messages", messageToHTML);
-
-            dispatcher = request.getRequestDispatcher("/WEB-INF/messages.jsp");
-            dispatcher.forward(request, response);
+                MessageList userMessages = Home.currentUser.getMessageList();
+                String messageToHTML = "<div id=\"message_list\"><ul>";
+                
+                for(Message m: userMessages.getMessages()){
+                    messageToHTML += "<li id=\"message_title\">Title: "+m.getTitle()+"</li>";
+                    messageToHTML += "<li id=\"message_content\">"+m.getContent()+"</li>";
+                    
+                }
+                
+                messageToHTML += "</ul></div>";
+                session.setAttribute("messages", messageToHTML);
+                
+                dispatcher = request.getRequestDispatcher("/WEB-INF/messages.jsp");
+                dispatcher.forward(request, response);
           }else{
                 dispatcher = request.getRequestDispatcher("Home");
                 dispatcher.forward(request, response);

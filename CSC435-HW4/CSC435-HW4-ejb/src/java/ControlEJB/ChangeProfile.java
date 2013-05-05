@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 
 @Stateful
+@Local(ChangeProfileLocal.class)
 public class ChangeProfile implements ChangeProfileLocal {
 
     @Override

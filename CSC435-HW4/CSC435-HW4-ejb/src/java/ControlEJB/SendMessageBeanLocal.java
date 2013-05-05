@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 @Remote
 public interface SendMessageBeanLocal {
     
-    public void deliverMessage(HttpServletRequest request);
+    public void deliverMessage(ArrayList<User> users, HttpServletRequest request);
     
     
 }

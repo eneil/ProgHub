@@ -34,9 +34,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Project.findByLang", query = "SELECT p FROM Project p WHERE p.lang = :lang")})
 public class Project implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Size(max = 100)
-    @Column(name = "title")
     @Id
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "title")
     private String title;
     @Size(max = 1000)
     @Column(name = "description")
@@ -58,10 +60,11 @@ public class Project implements Serializable {
     private String lang;
 
     public Project() {
-        
     }
 
-  
+    public Project(String title) {
+        this.title = title;
+    }
 
     public String getTitle() {
         return title;
@@ -70,9 +73,6 @@ public class Project implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
-
- 
-
 
     public String getDescription() {
         return description;
@@ -122,7 +122,12 @@ public class Project implements Serializable {
         this.lang = lang;
     }
 
-
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (title != null ? title.hashCode() : 0);
+        return hash;
+    }
 
     @Override
     public boolean equals(Object object) {

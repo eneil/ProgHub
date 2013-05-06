@@ -37,13 +37,13 @@ public class ProjCreate extends HttpServlet {
             HttpSession session = request.getSession();
             RequestDispatcher dispatcher;
 
-            if (session.getAttribute("currentUser") != null) {
+           // if (session.getAttribute("currentUser") != null) {
                 dispatcher = request.getRequestDispatcher("/WEB-INF/ProjectCreate.jsp");
                 dispatcher.forward(request, response);
-            } else {
-                dispatcher = request.getRequestDispatcher("Home");
-                dispatcher.forward(request, response);
-            }
+           // } else {
+               // dispatcher = request.getRequestDispatcher("Home");
+              //  dispatcher.forward(request, response);
+            //}
         } finally {
             out.close();
         }

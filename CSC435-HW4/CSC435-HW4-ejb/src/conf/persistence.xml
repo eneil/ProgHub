@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
   <persistence-unit name="CSC435-HW4-ejbPU" transaction-type="JTA">
+<<<<<<< HEAD
     <jta-data-source>CSC435 Database</jta-data-source>
+=======
+    <jta-data-source>csc435</jta-data-source>
+>>>>>>> 75a3710ebf935d0ce0eb2b82d73ca2de2afe89c8
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

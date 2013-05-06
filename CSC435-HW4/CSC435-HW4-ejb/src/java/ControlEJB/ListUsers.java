@@ -5,7 +5,13 @@
 package ControlEJB;
 
 import Model.User;
+import Model.Userlist;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -13,13 +19,23 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class ListUsers implements ListUsersLocal {
+    
+    @PersistenceContext
+    EntityManager em;
 
     @Override
     public String listUsers() {
 
+        List<Userlist> allUsers = new ArrayList<Userlist>();
+        try {
+            allUsers = em.createQuery("SELECT u FROM Userlist u")
+                    .getResultList();
+        }
+        catch (NoResultException e) {}
+        
         String userTable = "";
-            for (User u: Model.AllUsers.allUsers) {
-                    userTable += "<tr><td><img src=\"images/user.gif\"></td><td>" + u.getFirstName() + " " + u.getLastName() + "</td><td>" + u.getJobTitle() + " at " + u.getOccupation() + "</td></tr>";
+            for (Userlist u: allUsers) {
+                    userTable += "<tr><td><img src=\"images/user.gif\"></td><td>" + u.getFName() + " " + u.getLName() + "</td><td>" + u.getJobTitle() + " at " + u.getOccupation() + "</td></tr>";
             }
         return userTable;
     }

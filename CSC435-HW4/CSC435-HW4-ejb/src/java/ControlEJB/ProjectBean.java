@@ -5,24 +5,32 @@
 package ControlEJB;
 
 import javax.ejb.Stateless;
-import Model.ProjList;
+
 import Model.Project;
 import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 /**
  *
  * @author Eneil
  */
 @Stateless
 public class ProjectBean implements ProjectBeanLocal {
-
-    ProjList projects = new ProjList();
+    @PersistenceContext
+    EntityManager em;
     
     @Override
-    public ArrayList<Project> addProject(String title, String due, String desc, String lang, String group, String comp, String contact) {
-       
-        projects.addProject(title, due, desc, lang, group, comp, contact);
+    public List<Project> listProject() {
+        List<Project> allProj = new ArrayList<Project>();
+        try {
+            allProj = em.createQuery("SELECT p FROM Project p").getResultList();
+        } catch(NoResultException e) {}
         
-        return projects.getProjects();
+        return allProj;
         
     }
+    
+   
 }
